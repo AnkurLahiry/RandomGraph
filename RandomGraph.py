@@ -17,7 +17,18 @@ class RandomGraph:
                 # add your random function here what you wish
                 loop_probability = random.random()
                 if loop_probability >= self.probability:
-                    self.add_edge(i, j)
+                    self._add_edge_(i, j)
+                    self._add_edge_(j, i)
 
-    def add_edge(self, source, destination):
-        print("Will add edge in this function")
+    def _add_edge_(self, source, destination):
+        if source in self.adjacency_list:
+            edges = self.adjacency_list[source]
+            edges.add(destination)
+            self.adjacency_list[source] = edges
+        else:
+            edges = set()
+            edges.add(destination)
+            self.adjacency_list[source] = edges
+
+    def print_graph(self):
+        print(self.adjacency_list)
