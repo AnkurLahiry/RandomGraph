@@ -14,6 +14,14 @@ class RandomGraph:
                 # skipping the probability of being self loop
                 if i == j:
                     continue
+                if j in self.adjacency_list:
+                    list = self.adjacency_list[j]
+                    if i in list:
+                        continue
+                if i in self.adjacency_list:
+                    list = self.adjacency_list[i]
+                    if j in list:
+                        continue
                 # add your random function here what you wish
                 loop_probability = random.random()
                 if loop_probability >= self.probability:
